@@ -1,62 +1,46 @@
-/** @jsx jsx */
-import { jsx, css } from '@emotion/core';
-import React from 'react';
-import { mediaMaxWidth } from '../util';
+import React from "react";
+import education from "./img/education.png";
+import economic from "./img/economic.png";
+import agriculture from "./img/agriculture.png";
+import medical from "./img/medical.png";
+import transportation from "./img/transportation.png";
+import technology from "./img/technology.png";
+import environment from "./img/environment.png";
+import security from "./img/security.png";
+import justice from "./img/justice.png";
+import defaultLogo from "./img/default.png";
+const logoMap: Record<string, string> = {
+  การศึกษา: education,
+  เศรษฐกิจ: economic,
+  การเกษตร: agriculture,
+  สาธารณสุข: medical,
+  คมนาคม: transportation,
+  เทคโนโลยี: technology,
+  สิ่งแวดล้อม: environment,
+  ความมั่นคง: security,
+  ยุติธรรม: justice,
+};
 
-export default (props: { name: string, color: string }) => {
-    let logo;
-
-    switch (props.name) {
-        case "การศึกษา": {
-            logo = require("./img/education.png");
-            break;
-        }
-        case "เศรษฐกิจ": {
-            logo = require("./img/economic.png");
-            break;
-        }
-        case "การเกษตร": {
-            logo = require("./img/agriculture.png");
-            break;
-        }
-        case "สาธารณสุข": {
-            logo = require("./img/medical.png");
-            break;
-        }
-        case "คมนาคม": {
-            logo = require("./img/transportation.png");
-            break;
-        }
-        case "เทคโนโลยี": {
-            logo = require("./img/technology.png");
-            break;
-        }
-        case "สิ่งแวดล้อม": {
-            logo = require("./img/environment.png");
-            break;
-        }
-        case "ความมั่นคง": {
-            logo = require("./img/security.png");
-            break;
-        }
-        case "ยุติธรรม": {
-            logo = require("./img/justice.png");
-            break;
-        }
-        default: {
-            logo = require("./img/default.png");
-            break;
-        }
-    }
-    return (
-        <div css={{ width: '120px', textAlign: 'center' }}>
-            <div css={{
-                [mediaMaxWidth(768)]: { fontSize: '0.8em' }
-            }}>
-                {props.name}
-            </div>
-            <div css={{ minHeight: '300px', margin: '10px 0', background: props.color || 'white' }}></div>
-            <div><img src={logo} alt={props.name} css={{ width: '80px', height: '80px' }}></img></div>
-        </div>
-    );
+interface TopicVoterProps {
+  name: string;
+  color: string;
 }
+
+const TopicVoter: React.FC<TopicVoterProps> = ({ name, color }) => {
+  const logo: string = logoMap[name] || defaultLogo;
+  
+  return (
+    <div className="w-[120px] text-center">
+      <div className="text-sm md:text-base">{name}</div>
+      <div
+        className="min-h-[300px] my-2.5"
+        style={{ background: color || "white" }}
+      ></div>
+      <div>
+        <img src={logo} alt={name} className="w-[80px] h-[80px]" />
+      </div>
+    </div>
+  );
+};
+
+export default TopicVoter;

@@ -1,22 +1,16 @@
-/** @jsx jsx */
-import { jsx, css } from '@emotion/core';
-import React, { Component } from 'react';
-import { HashRouter, Route } from 'react-router-dom';
-import UnderDevelopment from './components/UnderDevelopment';
+import { Route, Routes } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import SummaryPage from './pages/SummaryPage';
 
-class App extends Component {
-  render() {
+function App() {
     return (
       <div>
-        <HashRouter basename={process.env.PUBLIC_URL}>
-          <Route exact path='/' component={MainPage} />
-          <Route exact path='/summary' component={SummaryPage} />
-        </HashRouter>
+        <Routes>
+          <Route  path='/' element={<MainPage/>} />
+          <Route  path='/summary' element={<SummaryPage/>} />
+        </Routes>
       </div>
     );
-  }
 }
 
 export default App;
