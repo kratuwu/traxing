@@ -1,10 +1,7 @@
-/** @jsx jsx */
-import { jsx, css } from '@emotion/core';
-import React from 'react';
 
-export default () => {
+export default function UnderDevelopment () {
     return (
-        <div css={{ fontSize: '3em', margin: '30px 0'}}>
+        <div>
             กำลังทำจ้า ...
         </div>
     );
